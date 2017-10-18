@@ -42,7 +42,7 @@
 		        </ul>
 		      </li>
 		      <li>
-		        <a href="frontend/product_no_category.php">產品介紹</a>
+		        <a href="frontend/product_category.php">產品介紹</a>
 		      </li>
 		      <li class="menu">
 		        <a href="frontend/blog.php">最新消息</a>
