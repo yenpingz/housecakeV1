@@ -29,12 +29,12 @@ if (isset($_POST["MM_insert"]) && $_POST["MM_insert"] == "INSERT") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../js/validator.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/validator.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="../../js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="../../assets/js/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="../../tinymce/skins/lightgray/skin.min.css" rel="stylesheet" type="text/css">
     <link href="../css/admin.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="../../js/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery-ui/jquery-ui.js"></script>
     <script type="text/javascript" src="../../tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
     $( function() {
