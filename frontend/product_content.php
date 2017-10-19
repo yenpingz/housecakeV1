@@ -18,6 +18,40 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
 	<title>product - Cake House</title>
 	<?php require_once("template/files.php"); ?>
 	<link rel="stylesheet" href="../assets/css/cart.css">
+  <script type="text/javascript" src="../assets/js/jquery.js"></script>
+  <script type="text/javascript">
+/*
+  $( function() {
+      $('.quantity-button').click(function() {
+        var num = 1;
+        num = $('input[name="Quantity"]').val();
+        if($(this).find('i').hasClass('fa-plus')){
+          if(num<20)num++;
+          console.log(num);
+        }else{
+          if(num>1)num--;
+          console.log(num);
+        }
+        $('input[name="Quantity').val(num);
+      });
+  });*/
+  $( function() {
+      $('.quantity-button').click(function() {
+        var num = 1;
+        num = $('#Quantity').val();
+        if($(this).find('i').hasClass('fa-plus')){
+          if(num<20)num++;
+          console.log(num);
+        }else{
+          if(num>1)num--;
+          console.log(num);
+        }
+        $('#Quantity').val(num);
+      });
+  });
+  </script>
+
+
 </head>
 <body>
 	<div id="page">
@@ -58,7 +92,7 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
 										<div class="quantity-button">
 											<i class="fa fa-minus" aria-hidden="true"></i>
 										</div>
-										<input type="text" name="Quantity" value="1">
+										<input type="text" id="Quantity" name="Quantity" value="1">
 										<div class="quantity-button">
 											<i class="fa fa-plus" aria-hidden="true"></i>
 										</div>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once('../../Connection/database.php');
+
+?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -24,13 +29,13 @@
 					<h1>會員登入</h1>
 					<div class="row">
 	          <div class="col-md-12">
-					<form action="#" method="post" data-toggle="validator">
+					<form action="login.php" method="post" data-toggle="validator">
 						<div class="form-group">
 							<div class="col-sm-2">
 								<label for="Account" class="control-label">帳號</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="Account" name="Account"  style="margin-bottom:10px;" data-error="請輸入帳號" required>
+								<input type="email" class="form-control" id="Account" name="account"  style="margin-bottom:10px;" data-error="請輸入帳號" required>
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
@@ -39,13 +44,14 @@
 								<label for="Password" class="control-label">密碼</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="Password" name="Password" data-minlength="6" data-error="請輸入密碼" required>
+								<input type="password" class="form-control" id="Password" name="password"  pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" data-minlength="6" data-error="請至少輸入一個英文，長度至少6個英文數字為密碼，最多12個" required>
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-12 text-center">
+								<input type="hidden" name="MM_login" value="LOGIN">
 								<button type="submit" class="btn btn-default" style="width:200px;">登入</button>
 								<a href="forget_password.php" style="margin-left:30px;">忘記密碼?</a>
 							</div>

@@ -1,4 +1,23 @@
+<?php
+require_once("../../connection/database.php");
 
+$sql= "INSERT INTO member
+				(account,
+				password,
+				phone,
+				createdDate) VALUES (
+				:account,
+				:password,
+				:phone,
+				:createdDate)";
+	$sth = $db ->prepare($sql);
+	$sth ->bindParam(":account", $_POST['account'], PDO::PARAM_STR);
+	$sth ->bindParam("password", $_POST['password'], PDO::PARAM_STR);
+	$sth ->bindParam(":phone", $_POST['phone'], PDO::PARAM_STR);
+	$sth ->bindParam(":createdDate", $_POST['createdDate'], PDO::PARAM_STR);
+	$sth -> execute();
+
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>

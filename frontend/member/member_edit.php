@@ -1,4 +1,26 @@
+<?php
+   require_once("../../connection/database.php");
+	 if(isset($_POST['MM_update']) && $_POST['MM_update'] == "UPDATE"){
+      $sql= "UPDATE member SET
+                name = :name,
+                phone = :phone,
+                email = :email,
+                address = :address,
+                updatedDate = :updatedDate WHERE memberID=:memberID";
+      $sth = $db ->prepare($sql);
+      $sth ->bindParam(":name", $_POST['name'], PDO::PARAM_STR);
+      $sth ->bindParam(":phone", $_POST['phone'], PDO::PARAM_STR);
+      $sth ->bindParam(":email", $_POST['email'], PDO::PARAM_STR);
+      $sth ->bindParam(":address", $_POST['address'], PDO::PARAM_STR);
+      $sth ->bindParam(":updatedDate", $_POST['updatedDate'], PDO::PARAM_STR);
+      $sth ->bindParam(":memberID", $_POST['memberID'], PDO::PARAM_INT);
+      $sth -> execute();
+      header('Location: member_edit.php?memberID='.$_POST['memberID']);
+    }
+		$sth = $db->query("SELECT * FROM member WHERE memberID=".$_GET['memberID']);
+    $member = $sth->fetch(PDO::FETCH_ASSOC);
 
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -7,6 +29,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cake House-會員資料修改</title>
 	<?php require_once("../template/files2.php"); ?>
+  <script type="text/javascript">
+  $( function() {
+    $( "#birthday" ).datepicker({
+        dateFormat: "yy-mm-dd"
+      });
+  } );
+  </script>
 </head>
 <body>
 	<div id="page">
@@ -28,18 +57,18 @@
 				</ul>
 				<div id="MemberForm">
 					<h1>會員資料修改</h1>
-					<form action="member_edit.php" method="post">
+					<form class="form-horizontal" role="form" action="member_edit.php" method="post" data-toggle="validator">
 						<input type="hidden" name="MM_update" value="EditForm">
 
 						<table>
 								<tr>
 									<th>帳號：</th>
-									<td>andy@gmail.com</td>
+									<td><?php echo $member['account']; ?></td>
 								</tr>
 								<tr>
 									<th>姓名：</th>
 									<td>
-										<input type="text" name="Name" value="Andy">
+										<input type="text" name="name" value="<?php echo $member['name']; ?>">
 										<div class="help-block with-errors"></div>
 									</td>
 								</tr>
@@ -50,23 +79,26 @@
 										<input type="radio" name="Gender" value="1" > 女
 									</td>
 								</tr>
-								<tr>
+                <tr>
 									<th>生日：</th>
-									<td><input type="text" name="Birthday" value="<?php echo $member['Birthday']; ?>"></td>
+									<td><input type="input" class="form-control" id="birthday" name="birthday" value="<?php echo date('Y-m-d'); ?>"></td>
 								</tr>
 								<tr>
-									<th>聯絡電話：</th>
-									<td><input type="text" name="Phone"></td>
+									<th>EMAIL：</th>
+									<td><input type="email" name="email" value="<?php echo $member['email']; ?>"></td>
 								</tr>
 								<tr>
 									<th>行動電話：</th>
-									<td><input type="text" name="MobilePhone"></td>
+									<td><input type="text" name="phone" value="<?php echo $member['phone']; ?>"></td>
 								</tr>
 								<tr>
 									<th>地址：</th>
-									<td><input type="text" name="Address"></td>
+									<td><input type="text" name="address" value="<?php echo $member['address']; ?>"></td>
 								</tr>
 								<tr>
+									<input type="hidden" name="memberID" value="<?php echo $member['memberID'] ?>">
+                  <input type="hidden" name="MM_update" value="UPDATE">
+									<input type="hidden" name="updatedDate" value="<?php echo date('Y-m-d H-i-s'); ?>">
 									<td colspan="2" align="center"><input type="submit" value="更新資料" id="submit" ></td>
 								</tr>
 						</table>
