@@ -3,6 +3,9 @@ require_once("../connection/database.php");
 $sth = $db->query("SELECT * FROM news WHERE newsID=".$_GET["newsID"]);
 $news = $sth->fetch(PDO::FETCH_ASSOC);
 
+$sth2 = $db->query("SELECT * FROM news ORDER BY publishedDate DESC");
+$lastestnews = $sth2->fetch(PDO::FETCH_ASSOC);
+
 
  ?>
 
@@ -30,15 +33,15 @@ $news = $sth->fetch(PDO::FETCH_ASSOC);
  					<h1><?php echo $news["title"]; ?></h1>
  					<span><?php echo $news["publishedDate"]; ?></span>
  					<p><?php echo $news["content"]; ?></p>
- 					<a href="blog.php" class="load">back to blog</a>
+ 					<a href="newslist.php" class="load">返回最新消息列表</a>
  				</div>
  				<div class="sidebar">
- 					<h1>Recent Posts</h1>
+ 					<h1>最新消息</h1>
  					<img src="../images/on-diet.png" alt="">
- 					<h2>ON THE DIET</h2>
- 					<span>By Admin on November 28, 2023</span>
- 					<p>You can replace all this text with your own text. You can remove any link to our website from this website template.</p>
- 					<a href="singlepost.php" class="more">Read More</a>
+ 					<h2><?php echo $lastestnews["title"]; ?></h2>
+ 					<span><?php echo $lastestnews["publishedDate"]; ?></span>
+ 					<p><?php echo mb_substr($lastestnews["content"],0,50,"utf-8")."..."; ?></p>
+ 					<a href="news.php?newsID=<?php echo $lastestnews["newsID"]; ?>" class="more">Read More</a>
  				</div>
  			</div>
  		</div>

@@ -14,7 +14,7 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
 </head>
 <body>
 	<div id="page">
-		<?php require_once("../template/header.php"); ?>
+		<?php require_once("../template/memberheader.php"); ?>
 		<div id="body" class="contact">
 			<div class="header">
 				<div>

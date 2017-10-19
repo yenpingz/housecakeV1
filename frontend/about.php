@@ -1,4 +1,9 @@
-﻿
+<?php
+require_once("../connection/database.php");
+$sth = $db->query("SELECT * FROM page WHERE pageID=".$_GET["pageID"]);
+$page = $sth->fetch(PDO::FETCH_ASSOC);
+
+ ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -18,17 +23,17 @@
 				</div>
 			</div>
 			<div class="body">
-				<img src="../images/bg-header-about.jpg" alt="">
+				<img src="../assets/images/bg-header-about.jpg" alt="">
 			</div>
 			<div class="footer">
 				<div class="sidebar">
 
 					<p>
-						<a href="about.php" style="text-decoration:none;">頁面標題</a>
+						<?php echo $page["title"]; ?>
 					</p>
 								</div>
 				<div class="article">
-					關於我們內容
+					<?php echo $page["contant"]; ?>
 				</div>
 			</div>
 		</div>

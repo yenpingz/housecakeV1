@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../backend/function/connection.php');
+require('../../connection/database.php');
 
 $sth = $db->query("SELECT * FROM member WHERE Account='".$_POST['Account']."' AND Password='".$_POST['Password']."'");
 

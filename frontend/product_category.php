@@ -1,4 +1,15 @@
+<?php
+require_once("../connection/database.php");
+$sth = $db->query("SELECT * FROM product WHERE product_cakecategoryID=".$_GET["cakecategoryID"]);
+$product = $sth->fetchAll(PDO::FETCH_ASSOC);
 
+$sth2 = $db->query("SELECT * FROM cakecategory WHERE cakecategoryID=".$_GET["cakecategoryID"]);
+$cakecategory = $sth2->fetch(PDO::FETCH_ASSOC);
+
+$sth3 = $db->query("SELECT * FROM cakecategory ");
+$cakecategories = $sth3->fetchAll(PDO::FETCH_ASSOC);
+
+ ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -20,20 +31,23 @@
 			<div class="wrapper">
 				<ol class="breadcrumb">
 				  <li><a href="../index.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-				  <li class="active"><a href="#">蛋糕</a></li>
+					<li class="active"><a href="product_no_category.php">全部</a><i></i></li>
+					<li><a href="product_category.php?cakecategoryID=<?php echo $cakecategory['cakecategoryID']; ?>"><?php echo $cakecategory["categoryName"]; ?></a></li>
 				</ol>
 				<ul class="Category">
 
-					<li><a href="#"></a></li>
-
+					<li><a href="product_no_category.php">產品分類</a></li>
+					<?php foreach ($cakecategories as $row ){?>
+					<li><a href="product_category.php?cakecategoryID=<?php echo $row["cakecategoryID"] ?>"><?php echo $row["categoryName"]; ?></a></li>
+					<?php } ?>
 				</ul>
 				<ul id="Products">
-
+					<?php foreach ($product as $row ){?>
 					<li>
-						<a href="#"><img src="../uploads/product/cheese.jpg" width="200" height="150" alt=""></a>
-						<a href="#"><h2>起士蛋糕</h2></a>
+						<a href="product_content.php?cakecategoryID=<?php echo $row['product_cakecategoryID'];?>&productID=<?php echo $row['productID'];?>"><img src="../uploads/products/<?php echo $row['picture'] ?>" width="200" height="150" alt=""></a>
+						<a href="product_content.php?cakecategoryID=<?php echo $row['product_cakecategoryID'];?>&productID=<?php echo $row['productID'];?>"><h2><?php echo $row['name'] ?></h2></a>
 					</li>
-
+					<?php } ?>
 				</ul>
 			</div>
 		</div>
