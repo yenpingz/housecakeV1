@@ -3,12 +3,14 @@
 	 if(isset($_POST['MM_update']) && $_POST['MM_update'] == "UPDATE"){
       $sql= "UPDATE member SET
                 name = :name,
+                birthday = :birthday,
                 phone = :phone,
                 email = :email,
                 address = :address,
                 updatedDate = :updatedDate WHERE memberID=:memberID";
       $sth = $db ->prepare($sql);
       $sth ->bindParam(":name", $_POST['name'], PDO::PARAM_STR);
+      $sth ->bindParam(":birthday", $_POST['birthday'], PDO::PARAM_STR);
       $sth ->bindParam(":phone", $_POST['phone'], PDO::PARAM_STR);
       $sth ->bindParam(":email", $_POST['email'], PDO::PARAM_STR);
       $sth ->bindParam(":address", $_POST['address'], PDO::PARAM_STR);
@@ -34,7 +36,7 @@
     $( "#birthday" ).datepicker({
         dateFormat: "yy-mm-dd"
       });
-  } );
+  });
   </script>
 </head>
 <body>
@@ -81,7 +83,7 @@
 								</tr>
                 <tr>
 									<th>生日：</th>
-									<td><input type="input" class="form-control" id="birthday" name="birthday" value="<?php echo date('Y-m-d'); ?>"></td>
+									<td><input type="input" class="form-control" id="birthday" name="birthday" value="<?php echo $member['birthday']; ?>"></td>
 								</tr>
 								<tr>
 									<th>EMAIL：</th>

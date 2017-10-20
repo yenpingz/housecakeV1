@@ -1,3 +1,4 @@
+<?php require_once('connection/database.php'); ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -18,7 +19,7 @@
 	<div id="page">
 		<div id="tool-bar">
 		  <div class="container">
-		  <div class="tool"><a href="#">加入會員</a> 。 <a href="#">會員登入</a> 。 <a href="#"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
+		  <div class="tool"><a href="frontend/member/member_apply.php">加入會員</a> 。 <a href="frontend/member/member_login.php">會員登入</a> 。 <a href="#"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
 		  </div>
 		</div>
 		</div>
@@ -42,7 +43,7 @@
 		        </ul>
 		      </li>
 		      <li>
-		        <a href="frontend/product_category.php">產品介紹</a>
+		        <a href="frontend/product_no_category.php">產品介紹</a>
 		      </li>
 		      <li class="menu">
 		        <a href="frontend/newslist.php">最新消息</a>

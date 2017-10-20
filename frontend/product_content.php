@@ -1,14 +1,13 @@
 <?php
 require_once("../connection/database.php");
-
-$sth = $db->query("SELECT * FROM cakecategory WHERE 	cakecategoryID=".$_GET["cakecategoryID"]);
+session_start();
+print_r($_SESSION['Cart']);
+$sth = $db->query("SELECT * FROM cakecategory WHERE cakecategoryID=".$_GET["cakecategoryID"]);
 $cakecategory = $sth->fetch(PDO::FETCH_ASSOC);
 
 $sth = $db->query("SELECT * FROM product WHERE productID=".$_GET["productID"]);
 $product = $sth->fetch(PDO::FETCH_ASSOC);
  ?>
-
-
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -50,8 +49,15 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
       });
   });
   </script>
-
-
+<?php
+if(isset($_GET['Existed']) && $_GET['Existed'] != null){
+  if($_GET['Existed'] == 'true'){
+    echo "<script>alert('此商品已存在購物車，請至我的購物車修改數量。')</script>";
+  }else{
+    echo "<script>alert('成功加入購物車!')</script>";
+  }
+}
+ ?>
 </head>
 <body>
 	<div id="page">
@@ -76,14 +82,12 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
 					</div>
 					<div class="content-right">
 						<h2><?php echo $product['name']; ?></h2>
-						<form class="" action="add_cart.php" method="post">
+						<form class="" action="addCart.php" method="post">
 							<table id="ProductTable">
 								<tr>
 									<td width="20%">價格：</td>
 									<td class="price">
-
-
-										<?php echo $product['price']; ?>
+										NT$<?php echo $product['price']; ?>
 									</td>
 								</tr>
 								<tr>
@@ -99,6 +103,11 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
 									</td>
 								</tr>
 								<tr>
+                  <input type="hidden" name="name" value="<?php echo $product['name']; ?>">
+                  <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+                  <input type="hidden" name="picture" value="<?php echo $product['picture']; ?>">
+                  <input type="hidden" name="productID" value="<?php echo $product['productID']; ?>">
+                  <input type="hidden" name="cakecategoryID" value="<?php echo $product['product_cakecategoryID']; ?>">
 									<td colspan="2"><input type="submit" class="cart" value="加入購物車"></td>
 								</tr>
 							</table>
