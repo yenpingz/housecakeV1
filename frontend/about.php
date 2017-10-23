@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../connection/database.php");
 $sth = $db->query("SELECT * FROM page WHERE pageID=".$_GET["pageID"]);
 $page = $sth->fetch(PDO::FETCH_ASSOC);

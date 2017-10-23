@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../connection/database.php");
 
 $limit = 2;

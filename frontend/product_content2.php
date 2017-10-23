@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../backend/function/connection.php');
 $sql = $db->query("SELECT * FROM product WHERE ProductID=".$_GET['ProductID']);
 $product = $sql->fetch(PDO::FETCH_ASSOC);

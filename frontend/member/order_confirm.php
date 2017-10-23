@@ -1,3 +1,9 @@
+<?php
+require_once("../../connection/database.php");
+session_start();
+$sth = $db->query("SELECT * FROM member WHERE account="."'".$_SESSION["account"]."'");
+$member = $sth->fetch(PDO::FETCH_ASSOC);
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -41,26 +47,29 @@
             		</tr>
             	</thead>
               <tbody>
-
+							<?php
+									$sumtotal=0;
+									for ($i=0; $i < count($_SESSION['Cart']); $i++) {
+								?>
                 <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
 									<td data-title="商品圖片">
-											<a href=""><img src="../uploads/product/cheese.jpg" alt="" width="200" height="150"></a>
+											<a href=""><img src="../../uploads/products/<?php echo $_SESSION['Cart'][$i]['picture']; ?>" alt="" width="200" height="150"></a>
 									</td>
 									<td class="cart_description" data-title="商品名稱">
-											<h4>起士蛋糕</h4>
+											<h4><?php echo $_SESSION['Cart'][$i]['name'];?></h4>
 									</td>
-                  <td data-title="單價">$NT 150</td>
-                  <td data-title="數量">1</td>
-									<td data-title="小計">$NT 150</td>
+                  <td data-title="單價">$NT <?php echo $_SESSION['Cart'][$i]['price']; ?></td>
+                  <td data-title="數量"><?php echo $_SESSION['Cart'][$i]['Quantity']; ?></td>
+									<td data-title="小計">$NT <?php $subtotal=$_SESSION['Cart'][$i]['price'] * $_SESSION['Cart'][$i]['Quantity']; echo $subtotal; ?></td>
                 </tr>
-
+							<?php $sumtotal+=$subtotal; } ?>
 								<tr>
 									<td colspan="4" style="text-align: right;font-weight:bold;">運費</td>
-									<td style="text-align: left;font-weight:bold;">$NT 120</td>
+									<td style="text-align: left;font-weight:bold;">$NT<?php if($sumtotal>1000) $shipping=0; else $shipping=150; echo $shipping;?></td>
 								</tr>
 								<tr>
 									<td colspan="4" style="text-align: right;font-weight:bold;">總金額</td>
-									<td style="text-align: left;font-weight:bold;">$NT 270</td>
+									<td style="text-align: left;font-weight:bold;">$NT <?php echo $sumtotal; ?></td>
 								</tr>
               </tbody>
             </table>
@@ -75,7 +84,7 @@
 		                  <label for="OrderName" class="control-label">訂購人</label>
 		                </div>
 		                <div class="col-sm-10">
-		                  <input type="text" class="form-control" id="OrderName" name="OrderName" value="" >
+		                  <input type="text" class="form-control" id="OrderName" name="orderName" value="<?php echo $member['name'] ?>" required>
 		                </div>
 		              </div>
 									<div class="form-group">
@@ -83,7 +92,7 @@
 		                  <label for="Name" class="control-label">收件者</label>
 		                </div>
 		                <div class="col-sm-10">
-		                  <input type="text" class="form-control" id="Name" name="Name" value="">
+		                  <input type="text" class="form-control" id="Name" name="name" value="<?php echo $member['name'] ?>" required>
 		                </div>
 		              </div>
 									<div class="form-group">
@@ -91,7 +100,7 @@
 		                  <label for="Name" class="control-label">聯絡電話</label>
 		                </div>
 		                <div class="col-sm-10">
-		                  <input type="text" class="form-control" id="Phone" name="Phone" value="">
+		                  <input type="text" class="form-control" id="Phone" name="phone" value="<?php echo $member['phone'] ?>" required>
 		                </div>
 		              </div>
 		              <div class="form-group">
@@ -99,13 +108,13 @@
 		                  <label for="Mobile" class="control-label">行動電話</label>
 		                </div>
 		                <div class="col-sm-10">
-		                  <input type="text" class="form-control" id="Mobile" name="Mobile" value="">
-											<input type="hidden" name="OrderNo" value="">
-											<input type="hidden" name="OrderDate" value="">
-											<input type="hidden" name="MemberID" value="">
-											<input type="hidden" name="Total" value="">
-											<input type="hidden" name="Shipping" value="">
-											<input type="hidden" name="CreatedDate" value="">
+		                  <input type="text" class="form-control" id="Mobile" name="mobile" value="" required>
+											<input type="hidden" name="orderNO" value="<?php echo 'SH'.date('YmdHis'); ?>">
+											<input type="hidden" name="orderDate" value="<?php echo date('Y-m-d H-i-s'); ?>">
+											<input type="hidden" name="memberID" value="<?php echo $member['memberID']; ?>">
+											<input type="hidden" name="totalPrice" value="<?php echo $sumtotal;?>">
+											<input type="hidden" name="shipping" value="<?php echo $shipping;?>">
+											<input type="hidden" name="createdDate" value="<?php echo date('Y-m-d H-i-s'); ?>">
 		                </div>
 		              </div>
 									<div class="form-group">
@@ -113,7 +122,7 @@
 		                  <label for="Email" class="control-label">E-mail</label>
 		                </div>
 		                <div class="col-sm-10">
-		                  <input type="text" class="form-control" id="Email" name="Email" value="">
+		                  <input type="text" class="form-control" id="Email" name="email" value="<?php echo $member['email'] ?>">
 		                </div>
 		              </div>
 		              <div class="form-group">
@@ -121,7 +130,7 @@
 		                  <label for="Address" class="control-label">寄送地址</label>
 		                </div>
 		                <div class="col-sm-10">
-		                  <input type="text" class="form-control" id="Address" name="Address" value="">
+		                  <input type="text" class="form-control" id="Address" name="address" value="<?php echo $member['address'] ?>" required>
 		                </div>
 		              </div>
 		              <div class="form-group">

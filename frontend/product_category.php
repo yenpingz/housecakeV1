@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../connection/database.php");
 $sth = $db->query("SELECT * FROM product WHERE product_cakecategoryID=".$_GET["cakecategoryID"]);
 $product = $sth->fetchAll(PDO::FETCH_ASSOC);

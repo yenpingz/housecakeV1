@@ -1,4 +1,10 @@
+<?php
+session_start();
+require_once("../../connection/database.php");
+$sth = $db->query("SELECT * FROM customer_order WHERE memberID=".$_SESSION["memberID"]);
+$customer_orders= $sth->fetchALL(PDO::FETCH_ASSOC);
 
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -40,25 +46,31 @@
                       		</tr>
                       	</thead>
                         <tbody>
-
+													<?php foreach ($customer_orders as $order){  ?>
                           <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
-                            <td data-title="訂購日期">2017-05-31</td>
-                            <td data-title="訂單編號">SW8994532</td>
-                            <td data-title="總金額">$NT 1200</td>
-                            <td data-title="運費">$NT 120</td>
-                            <td data-title="訂單狀態">待付款
+                            <td data-title="訂購日期"><?php echo $order['orderDate']; ?></td>
+                            <td data-title="訂單編號"><?php echo $order['orderNO']; ?></td>
+                            <td data-title="總金額">$NT <?php echo $order['totalPrice']; ?></td>
+                            <td data-title="運費">$NT <?php echo $order['shipping']; ?></td>
+                            <td data-title="訂單狀態"><?php switch ($order['shipping']) {
+                            	case 0:
+                            		echo "未付款";
+                            		break;
+
+															case 1:
+	                            	echo "已付款運送中";
+	                            	break;
+															case 2:
+	                            	echo "配送完成";
+	                            	break;
+															case 99:
+																echo "取消訂單";
+																break;
+                            }?>
                             </td>
-                            <td data-title="觀看明細" style="border-right:1px solid #ebebeb;"><a href="order_details.php">觀看明細</a></td>
+                            <td data-title="觀看明細" style="border-right:1px solid #ebebeb;"><a href="order_details.php?no=<?php echo $order['customer_orderID']; ?>">觀看明細</a></td>
                           </tr>
-													<tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
-                            <td data-title="訂購日期">2017-05-25</td>
-                            <td data-title="訂單編號">SW8994532</td>
-                            <td data-title="總金額">$NT 1500</td>
-                            <td data-title="運費">$NT 120</td>
-                            <td data-title="訂單狀態">已付款
-                            </td>
-                            <td data-title="觀看明細" style="border-right:1px solid #ebebeb;"><a href="order_details.php">觀看明細</a></td>
-                          </tr>
+													<?php } ?>
                         </tbody>
                       </table>
 

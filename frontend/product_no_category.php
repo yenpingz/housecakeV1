@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../connection/database.php");
 $sth = $db->query("SELECT * FROM cakecategory");
 $cakecategories = $sth->fetchAll(PDO::FETCH_ASSOC);

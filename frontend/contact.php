@@ -1,3 +1,6 @@
+<?php
+session_start();
+ ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>

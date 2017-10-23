@@ -14,6 +14,14 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cake House-我的購物車</title>
 	<?php require_once("../template/files2.php"); ?>
+	<style media="screen">
+		#OrderForm ul li{
+			float: right;
+		}
+		#OrderForm ul h1{
+			float: left;
+		}
+	</style>
 </head>
 <body>
 	<div id="page">
@@ -33,9 +41,13 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
 					<li><a href="my_cart.php">我的購物車</a></li>
 					<li><a href="my_orders.php">我的訂單</a></li>
 				</ul>
-				<div id="OrderForm">
-					<h1>我的購物車</h1>
 
+				<div id="OrderForm">
+
+						<ul class="Category" >
+							<h1 >我的購物車</h1>
+							<li><a href="my_orders_deleteall.php">移除所有商品</a></li>
+						</ul>
 						<table id="order-tables">
             	<thead>
             		<tr>
@@ -81,8 +93,11 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
 													</tr>
 														<tr>
 															<td colspan="7" >
+																	<input type="hidden" name="" value="">
+																	<input type="hidden" name="freight" value="<?php if($sumtotal>1000) echo "0"; else echo "150";?>">
+																	<input type="hidden" name="totoal" value="<?php echo $sumtotal; ?>">
 																	<a href="order_confirm.php" class="edit-button cart">我要結帳</a>
-													</td>
+															</td>
 												</tr>
 										<?php }else{ ?>
 									<tr>
