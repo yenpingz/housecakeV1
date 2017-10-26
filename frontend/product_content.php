@@ -60,6 +60,19 @@ if(isset($_GET['Existed']) && $_GET['Existed'] != null){
  ?>
 </head>
 <body>
+  <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.10';
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
 	<div id="page">
 		<?php require_once("template/header.php"); ?>
 		<div id="body">
@@ -116,6 +129,7 @@ if(isset($_GET['Existed']) && $_GET['Existed'] != null){
 					<div class="clearboth"></div>
 					<hr>
 					<p>商品說明</p>
+          <p><div class="fb-comments" data-href="https://www.facebook.com/%E9%81%8A%E6%A8%82%E7%AF%80-149193725823228/?modal=admin_todo_tour" data-width="100%" data-numposts="5"></div></p>
 				</div>
 			</div>
 		</div>

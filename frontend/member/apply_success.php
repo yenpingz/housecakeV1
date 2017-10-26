@@ -17,6 +17,13 @@ $sql= "INSERT INTO member
 	$sth ->bindParam(":createdDate", $_POST['createdDate'], PDO::PARAM_STR);
 	$sth -> execute();
 
+			$to = "yan20170726@gmail.com";
+  		$header  = 'Content-type: text/html; charset=iso-8859-1'."\r\n";
+  		$header .= "From: yan20170726@gmail.com";
+  		$subject = "[Cake House] 加入會員確認信";
+  		$body    = "您已經加入 [Cake House] 會員確認,<br><br>";
+  		$body   .= "連結在此<a href='http://120.124.165.116/c/no19/housecakeV1/apply_success.php'></a>";
+  		mail($to, $subject, $body, $header);
  ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->

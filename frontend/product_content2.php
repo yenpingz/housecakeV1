@@ -1,7 +1,7 @@
 <?php
 session_start();
-require('../backend/function/connection.php');
-$sql = $db->query("SELECT * FROM product WHERE ProductID=".$_GET['ProductID']);
+require('../connection/database.php');
+$sql = $db->query("SELECT * FROM product WHERE productID=".$_GET['productID']);
 $product = $sql->fetch(PDO::FETCH_ASSOC);
 if(isset($_GET['Existed']) && $_GET['Existed'] == "false"){
 	echo "<script>alert('成功加入購物車!');</script>";
@@ -33,23 +33,23 @@ if(isset($_GET['Existed']) && $_GET['Existed'] == "true"){
 				<ol class="breadcrumb">
 				  <li><a href="../index.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
 				  <li><a href="#">蛋糕</a></li>
-				  <li class="active"><?php echo $product['Name']; ?></li>
+				  <li class="active"><?php echo $product['name']; ?></li>
 				</ol>
 				<div id="Product">
 
 					<div class="content-left">
-						<img src="../uploads/product/<?php echo $product['Picture']; ?>" alt="">
+						<img src="../uploads/products/<?php echo $product['picture']; ?>" alt="">
 					</div>
 					<div class="content-right">
-						<h2><?php echo $product['Name']; ?></h2>
+						<h2><?php echo $product['name']; ?></h2>
 						<form class="" action="add_cart.php" method="post">
 							<table id="ProductTable">
 								<tr>
 									<td width="20%">價格：</td>
 									<td class="price">
-										<?php echo $product['Price']; ?>
-										<input type="hidden" name="Price" value="<?php echo $product['Price']; ?>">
-										<input type="hidden" name="ProductID" value="<?php echo $product['ProductID']; ?>">
+										<?php echo $product['price']; ?>
+										<input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+										<input type="hidden" name="productID" value="<?php echo $product['productID']; ?>">
 									</td>
 								</tr>
 								<tr>
@@ -72,7 +72,7 @@ if(isset($_GET['Existed']) && $_GET['Existed'] == "true"){
 					</div>
 					<div class="clearboth"></div>
 					<hr>
-					<p><?php echo $product['Description']; ?></p>
+					<p><?php echo $product['description']; ?></p>
 				</div>
 			</div>
 		</div>
