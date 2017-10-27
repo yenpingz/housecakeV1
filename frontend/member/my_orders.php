@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../connection/database.php");
+require_once("../../connection/database1.php");
 $sth = $db->query("SELECT * FROM customer_order WHERE memberID=".$_SESSION["memberID"]);
 $customer_orders= $sth->fetchALL(PDO::FETCH_ASSOC);
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../Connection/database.php');
+require_once('../Connection/database1.php');
 if(isset($_POST['MM_login']) && $_POST['MM_login'] == "LOGIN"){
 //讀取news_category資料表的所有資料
 	$sth = $db->query("SELECT * FROM users WHERE account='".$_POST['account']."'AND password='".$_POST['password']."'");

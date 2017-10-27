@@ -1,5 +1,5 @@
 <?php
-    require_once("../../connection/database.php");
+    require_once("../../connection/database1.php");
     $sth = $db->query("SELECT * FROM question WHERE questioncategoryID=".$_GET['questioncategoryID']." ORDER BY createdDate DESC");
     $all_question = $sth->fetchAll(PDO::FETCH_ASSOC);
     $total = count($all_question);

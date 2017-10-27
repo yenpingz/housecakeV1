@@ -1,5 +1,5 @@
 <?php
-require_once("../../connection/database.php");
+require_once("../../connection/database1.php");
 
 $sql= "INSERT INTO member
 				(account,

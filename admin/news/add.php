@@ -1,5 +1,5 @@
 <?php
-require("../../connection/database.php");
+require("../../connection/database1.php");
 if (isset($_POST["MM_insert"]) && $_POST["MM_insert"] == "INSERT") {
   $sql= "INSERT INTO news
           (publishedDate,

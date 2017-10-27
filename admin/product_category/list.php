@@ -1,5 +1,5 @@
 <?php
-    require_once("../../connection/database.php");
+    require_once("../../connection/database1.php");
     $sth = $db->query("SELECT * FROM cakecategory");
     $all_cakecategory = $sth->fetchAll(PDO::FETCH_ASSOC);
  ?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../connection/database.php");
+require_once("../connection/database1.php");
 $sth = $db->query("SELECT * FROM news WHERE newsID=".$_GET["newsID"]);
 $news = $sth->fetch(PDO::FETCH_ASSOC);
 

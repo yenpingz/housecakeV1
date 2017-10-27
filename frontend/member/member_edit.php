@@ -1,6 +1,6 @@
 <?php
   session_start();
-   require_once("../../connection/database.php");
+   require_once("../../connection/database1.php");
 	 if(isset($_POST['MM_update']) && $_POST['MM_update'] == "UPDATE"){
       $sql= "UPDATE member SET
                 name = :name,

@@ -1,5 +1,5 @@
 <?php
-require_once("../../connection/database.php");
+require_once("../../connection/database1.php");
 session_start();
 $sth = $db->query("SELECT * FROM member WHERE account="."'".$_SESSION["account"]."'");
 $member = $sth->fetch(PDO::FETCH_ASSOC);

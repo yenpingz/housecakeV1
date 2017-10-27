@@ -1,5 +1,5 @@
 <?php
-    require_once("../../connection/database.php");
+    require_once("../../connection/database1.php");
     $sth = $db->query("SELECT * FROM product WHERE product_cakecategoryID=".$_GET['cakecategoryID']." ORDER BY createdDate DESC");
     $all_product = $sth->fetchAll(PDO::FETCH_ASSOC);
     $total = count($all_product);

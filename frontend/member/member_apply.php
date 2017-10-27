@@ -1,5 +1,5 @@
 <?php
-require_once("../../connection/database.php");
+require_once("../../connection/database1.php");
  ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->

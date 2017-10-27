@@ -2,7 +2,7 @@
     require_once("../template/loginCheck.php");
     session_unset();
     session_destroy();
-    require_once("../../connection/database.php");
+    require_once("../../connection/database1.php");
     $limit = 10;
     if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
     $start_from = ($page-1) * $limit;

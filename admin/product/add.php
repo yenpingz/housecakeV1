@@ -1,5 +1,5 @@
 <?php
-require("../../connection/database.php");
+require("../../connection/database1.php");
 if(isset($_FILES['picture']['name']) && $_FILES['picture']['name'] != null){
     if (!file_exists('../../uploads/products')) mkdir('../../uploads/products', 0755, true);
     $path = $_FILES['picture']['name'];

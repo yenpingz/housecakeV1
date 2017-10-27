@@ -1,5 +1,5 @@
 <?php
-    require_once("../../connection/database.php");
+    require_once("../../connection/database1.php");
     $sth = $db->query("SELECT * FROM member");
     $all_member = $sth->fetchAll(PDO::FETCH_ASSOC);
 

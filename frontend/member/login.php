@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../../connection/database.php');
+require('../../connection/database1.php');
 
 $sth = $db->query("SELECT * FROM member WHERE account='".$_POST['account']."' AND password='".$_POST['password']."'");
 

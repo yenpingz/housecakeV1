@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../connection/database.php");
+require_once("../connection/database1.php");
 
 $limit = 2;
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };

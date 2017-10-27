@@ -1,5 +1,5 @@
 <?php
-   require_once("../../connection/database.php");
+   require_once("../../connection/database1.php");
    if(isset($_POST['MM_update']) && $_POST['MM_update'] == "UPDATE"){
 
      if(isset($_FILES['picture']['name']) && $_FILES['picture']['name'] != null){

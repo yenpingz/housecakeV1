@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../connection/database.php");
+require_once("../../connection/database1.php");
 $sql= "INSERT INTO customer_order
 				(memberID,orderNO,orderDate,totalPrice,shipping,name,phone,mobile,email,address,createdDate) VALUES (
 				:memberID,

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../connection/database.php');
+require('../connection/database1.php');
 $sql = $db->query("SELECT * FROM product WHERE productID=".$_GET['productID']);
 $product = $sql->fetch(PDO::FETCH_ASSOC);
 if(isset($_GET['Existed']) && $_GET['Existed'] == "false"){

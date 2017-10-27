@@ -1,5 +1,5 @@
 <?php
-require("../../connection/database.php");
+require("../../connection/database1.php");
 /*$sql = "DELETE FROM cakecategory WHERE cakecategoryID=".$_GET['cakecategoryID'];
 $sth = $db->prepare($sql);
 $sth->execute();*/

@@ -1,5 +1,5 @@
 <?php
-require_once('../../Connection/database.php');
+require_once('../../connection/database1.php');
 
 //讀取news_category資料表的所有資料
 $sql = 'select * from page';

@@ -1,5 +1,5 @@
 <?php
-require_once("../connection/database.php");
+require_once("../connection/database1.php");
 session_start();
 print_r($_SESSION['Cart']);
 $sth = $db->query("SELECT * FROM cakecategory WHERE cakecategoryID=".$_GET["cakecategoryID"]);

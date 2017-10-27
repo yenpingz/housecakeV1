@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../connection/database.php");
+require_once("../connection/database1.php");
 $sth = $db->query("SELECT * FROM cakecategory");
 $cakecategories = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -16,6 +16,14 @@ $product = $sth2->fetchAll(PDO::FETCH_ASSOC);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>product - Cake House</title>
 	<?php require_once("template/files.php"); ?>
+  <script type="text/javascript">
+    $(function(){
+      $('#search').focus(function(){
+        $('#search').attr("placeholder","")
+      });
+    });
+  </script>
+
 </head>
 <body>
 	<div id="page">
@@ -39,6 +47,20 @@ $product = $sth2->fetchAll(PDO::FETCH_ASSOC);
 					<li><a href="product_category.php?cakecategoryID=<?php echo $row["cakecategoryID"] ?>"><?php echo $row["categoryName"]; ?></a></li>
 					<?php } ?>
 				</ul>
+        <div class="row">
+            <div class="col-md-4">
+            </div><div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <form action="search_result.php" class="search-form" method="get">
+                    <div class="form-group has-feedback">
+                    <label for="search" class="sr-only">搜尋產品</label>
+                    <input type="text" class="form-control" name="search" id="search" placeholder="搜尋產品">
+                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                  </div>
+                </form>
+            </div>
+        </div>
 				<ul id="Products">
 					<?php foreach ($product as $row ){?>
 					<li>
