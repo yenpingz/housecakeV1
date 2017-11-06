@@ -60,7 +60,7 @@
                   <th>地址</th>
                   <th>金額</th>
                   <th>編輯</th>
-                  <th>刪除</th>
+                  <th>交易狀態</th>
                 </tr>
               </thead>
               <tbody>
@@ -73,7 +73,19 @@
                   <td><?php echo $row["address"]; ?></td>
                   <td><?php echo $row["totalPrice"]; ?></td>
                   <td><a href="edit.php?ID=<?php echo $row["customer_orderID"];?>">編輯</a></td>
-                  <td><a href="delete.php?newsID=<?php echo $row["customer_orderID"];?>" onclick="if(!confirm('是否刪除此筆資料？')){return false;};">刪除</a></td>
+                  <td><?php $num=$row["status"];
+                              switch ($num) {
+                                  case '0':
+                                    echo "未付款";
+                                    break;
+
+                                  default:
+                                    echo "未付款";
+                                    break;
+                                }
+
+                        ?>
+                 </td>
                 </tr>
               <?php } ?>
               </tbody>

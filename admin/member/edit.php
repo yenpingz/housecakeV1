@@ -14,9 +14,7 @@
 
     }else{
       $filename = $_POST['picture1'];
-
     }
-
 
       $sql= "UPDATE member SET
                 picture = :picture,

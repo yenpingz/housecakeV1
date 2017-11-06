@@ -73,10 +73,10 @@
           <div class="col-md-12">
             <ul class="breadcrumb">
               <li>
-                <a href="#">主控台</a>
+                <a href="list.php">主控台</a>
               </li>
               <li>
-                <a href="#">最新消息管理</a>
+                <a href="add.php">新增最新消息</a>
               </li>
               <li class="active">新增一筆</li>
             </ul>
